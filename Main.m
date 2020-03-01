@@ -7,9 +7,6 @@
 % email: jmorga@sdsu.edu, fong.m.brandon97@gmail.com
 % Link to Report: 
 
-%%% DEFINE GLOBAL VARIABLES %%%
-run('Variables.m');
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Problem 1: Encoder: (Use 4:2:0 YCbCr component image)
 % Implementation 1: Display

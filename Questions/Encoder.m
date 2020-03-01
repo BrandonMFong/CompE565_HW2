@@ -12,16 +12,35 @@ ycbcrsubsample = GetSubSample(); % From GetSubSample.m
 [rows, columns, numberOfColorChannels] = size(ycbcrsubsample);
 DCT = ycbcrsubsample;
 
-
+BlockSize = 8;
 Row_MaxInterval = BlockSize;
 Row_MinInterval = 1;
 Column_MaxInterval = BlockSize;
 Column_MinInterval = 1;
+M = BlockSize;
+N = BlockSize;
 
 m = 0; n = 0;
 for i = 1:BlockSize:rows
+    if(Row_MaxInterval > rows) break; end;
     for j = 1:BlockSize:columns
-        Pixel = (Row_MinInterval:Row_MaxInterval,Column_MinInterval:Column_MaxInterval,:);
-        DCT(Row_MinInterval:Row_MaxInterval,Column_MinInterval:Column_MaxInterval,:) = GetDCT(m, n, )
+        if (Column_MaxInterval > columns) break; end;
+        for m = 0:(M-1)
+            for n = 0:(N-1)
+                % Create 8x8 block
+                Pixel = ycbcrsubsample(Row_MinInterval:Row_MaxInterval,Column_MinInterval:Column_MaxInterval,:);
+
+                % Getting DCT Coefficient
+                DCT(Row_MinInterval+m,Column_MinInterval+n,:) = GetDCT(m, n, Pixel);
+            end
+        end
+
+        % Increment Column Block
+        Column_MaxInterval = Column_MaxInterval + BlockSize; % bound this
+        Column_MinInterval = Column_MinInterval + BlockSize;
     end
+
+    % Increment Row Block
+    Row_MaxInterval = Row_MaxInterval + BlockSize; % bound this
+    Row_MinInterval = Row_MinInterval + BlockSize;
 end
