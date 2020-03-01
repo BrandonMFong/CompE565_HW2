@@ -5,7 +5,10 @@
 % Due Date: 2/23/2020, 11:00 pm
 % Name & ID : Joseph Morga (817281186), Brandon Fong (819295224)
 % email: jmorga@sdsu.edu, fong.m.brandon97@gmail.com
-% Link to Report: https://docs.google.com/document/d/1ara71pG_QNAmNXtZ8pAItMp23dw9SC7Hg4MwwOjM3XM/edit?usp=sharing
+% Link to Report: 
+
+%%% DEFINE GLOBAL VARIABLES %%%
+run('Variables.m');
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Problem 1: Encoder: (Use 4:2:0 YCbCr component image)
