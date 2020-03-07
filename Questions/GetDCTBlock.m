@@ -3,13 +3,13 @@
 % So this function only returns a DCT coefficient
 function out = GetDCTBlock(Pixel)
     [rows, columns] = size(Pixel);
-
-    for m = 1:rows
-        for n = 1:columns
-            Pixel(m,n) = GetDCT(m,n,Pixel,rows,columns);
+    DCTOutput = Pixel;
+    for m = 0:rows-1
+        for n = 0:columns-1
+            DCTOutput(m+1,n+1) = GetDCT(m,n,Pixel,rows,columns);
         end
     end
-    out = Pixel;
+    out = DCTOutput;
 end
 
 function out = GetDCT(m,n,pixel,M,N)

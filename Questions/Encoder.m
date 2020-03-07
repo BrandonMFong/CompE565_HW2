@@ -28,14 +28,16 @@ DCT_Y = luma(:,:,Y);
 
 % TODO working on Y component first
 for Row_MinInterval = 1:BlockSize:rows % sweeping rows
-    if(Row_MaxInterval > rows) break; end; % Bounding since I am inc by Blocksize
+    if(Row_MaxInterval > rows) 
+        break; 
+    end % Bounding since I am inc by Blocksize
+    
     for Column_MinInterval = 1:BlockSize:columns % Sweeping columns
-        if (Column_MaxInterval > columns) break; end; % Bounding since I am inc by Blocksize
+        if (Column_MaxInterval > columns) 
+            break; 
+        end % Bounding since I am inc by Blocksize
 
-        % Create 8x8 block
-        % Pixel = luma(Row_MinInterval:Row_MaxInterval,Column_MinInterval:Column_MaxInterval,Y);
-
-        % Getting DCT Block
+        % Getting DCT Block [DCTImage[Block] <= DCTBlock]
         DCT_Y(Row_MinInterval:Row_MaxInterval,Column_MinInterval:Column_MaxInterval) = GetDCTBlock(luma(Row_MinInterval:Row_MaxInterval,Column_MinInterval:Column_MaxInterval)); % From GetDCTBlock.m
 
         % Increment Column Block
