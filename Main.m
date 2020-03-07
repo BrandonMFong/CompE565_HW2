@@ -3,7 +3,7 @@
 % Joseph Morga & Brandon Fong
 % CompE 565 Homework 1
 % Due Date: 2/23/2020, 11:00 pm
-% Name & ID : Joseph Morga (817281186), Brandon Fong (819295224)
+% Name & ID : Joseph Morga (817281186), Brandon Fo  ng (819295224)
 % email: jmorga@sdsu.edu, fong.m.brandon97@gmail.com
 % Link to Report: 
 
