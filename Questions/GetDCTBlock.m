@@ -6,24 +6,15 @@ function out = GetDCTBlock(Pixel)
     DCTOutput = Pixel;
     for m = 0:rows-1
         for n = 0:columns-1
-            DCTOutput(m+1,n+1) = GetDCT(m,n,Pixel,rows,columns);
+            DCTOutput(m+1,n+1) = GetDCTCoefficient(m,n,Pixel,rows,columns);
         end
     end
     out = DCTOutput;
 end
 
-function out = GetDCT(m,n,pixel,M,N)
+function out = GetDCTCoefficient(m,n,pixel,M,N)
     % Get the Cp var   
-    cm = 0; cn = 0;
-    if ((m == 0) && (n == 0))
-        cm = 1 / sqrt(2);cn = 1 / sqrt(2);
-    elseif((m ~= 0) && (n == 0))
-        cm = 1;cn = 1 / sqrt(2);
-    elseif((m == 0) && (n ~= 0))
-        cm = 1 / sqrt(2);cn = 1;
-    else
-        cm = 1; cn = 1;
-    end
+    var = cm_cn_handler(m,n);
 
     % Calculate the inner loop of DCT
     Loop = 0;
@@ -33,5 +24,6 @@ function out = GetDCT(m,n,pixel,M,N)
         end
     end
 
-    out = (2/sqrt(M*N)) * cm * cn * Loop;
+    out = (2/sqrt(M*N)) * var.cm * var.cn * Loop;
 end
+
