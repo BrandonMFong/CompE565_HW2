@@ -17,10 +17,13 @@ function out = GetDCTCoefficient(m,n,pixel,M,N)
     var = cm_cn_handler(m,n);
 
     % Calculate the inner loop of DCT
-    Loop = 0;
+    Loop = int32(0);
     for i = 0:(M-1)
         for j = 0:(N-1)
-            Loop = pixel(i+1, j+1, :) * ((cos(2*i + 1)*m*pi)/2*M) * ((cos(2*j + 1)*n*pi)/2*N);
+            part1 = cos(((2*i + 1)*m*pi)/(2*M));
+            part2 = cos(((2*j + 1)*n*pi)/(2*N));
+            pix = pixel(i+1, j+1, :);
+            Loop = Loop + int32(pix * part1 * part2);
         end
     end
 

@@ -17,6 +17,9 @@
 % Other parameters here
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+% TODO the 8x8 block is outputting well for the first few 8x8 blocks.  
+% figure out if everything is outputting correctly from the getdctblock.m
+% method
 run('Questions/Encoder');
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
