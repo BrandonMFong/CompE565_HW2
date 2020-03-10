@@ -18,36 +18,10 @@ Y=1;Cb=2;Cr=3; % Define YCbCr component index
 % Define blocksize
 BlockSize = 8;
 
-% Init interval variables when working with blocksizeXblocksize
-Row_MaxInterval = BlockSize;
-Column_MaxInterval = BlockSize;
-
-% Make another instance of the ycbcrsubsample for each component
-DCT_Cb = int32(ycbcrsubsample(:,:,Cb));
-DCT_Cr = int32(ycbcrsubsample(:,:,Cr));
-DCT_Y = int32(luma(:,:,Y));
-
-% TODO working on Y component first
-for Row_MinInterval = 1:BlockSize:rows % sweeping rows
-    if(Row_MaxInterval > rows) 
-        break; % Nothing left in the photo to sweep
-    end % Bounding since I am inc by Blocksize
-    
-    for Column_MinInterval = 1:BlockSize:columns % Sweeping columns
-        if (Column_MaxInterval > columns) 
-            Column_MaxInterval = BlockSize;
-        end % Bounding since I am inc by Blocksize
-
-        % Getting DCT Block [DCTImage[Block] <= DCTBlock]
-        DCT_Y(Row_MinInterval:Row_MaxInterval,Column_MinInterval:Column_MaxInterval) = GetDCTBlock(int32(luma(Row_MinInterval:Row_MaxInterval,Column_MinInterval:Column_MaxInterval))); % From GetDCTBlock.m
-
-        % Increment Column Block
-        Column_MaxInterval = Column_MaxInterval + BlockSize; % bound this
-    end
-
-    % Increment Row Block
-    Row_MaxInterval = Row_MaxInterval + BlockSize; % bound this
-end
+% Get DCT 
+DCT_Y = GetDCT(luma,BlockSize);
+DCT_Cb = GetDCT(ycbcrsubsample(:,:,Cb),BlockSize);
+DCT_Cr = GetDCT(ycbcrsubsample(:,:,Cr),BlockSize);
 
 % Display the image
 figure, imshow(luma(:,:));title('ycbcrsubsample Image [Y]');
