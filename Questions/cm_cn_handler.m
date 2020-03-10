@@ -2,11 +2,11 @@
 
 classdef cm_cn_handler
     properties
-        cm;
-        cn; 
+        cm; cn; m; n;
     end
     methods
     function obj = cm_cn_handler(m,n) % Constructor
+        obj.m = m; obj.n = n;
         if ((m == 0) && (n == 0))
             obj.cm = 1 / sqrt(2);
             obj.cn = 1 / sqrt(2);

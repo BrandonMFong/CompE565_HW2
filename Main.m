@@ -1,11 +1,12 @@
 % HW1: Basic Digital Image Processing Operations
 % Due on 03/01/2020 (11:00 pm)
 % Joseph Morga & Brandon Fong
-% CompE 565 Homework 1
-% Due Date: 2/23/2020, 11:00 pm
+% CompE 565 Homework 2
+% Due Date: Sunday, March 22, 2020 11:00 pm
 % Name & ID : Joseph Morga (817281186), Brandon Fo  ng (819295224)
 % email: jmorga@sdsu.edu, fong.m.brandon97@gmail.com
 % Link to Report: 
+% Link to Git: 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Problem 1: Encoder: (Use 4:2:0 YCbCr component image)
@@ -17,9 +18,7 @@
 % Other parameters here
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% TODO the 8x8 block is outputting well for the first few 8x8 blocks.  
-% figure out if everything is outputting correctly from the getdctblock.m
-% method
+% TODO figure out how to display the two individual Y DCT blocks
 run('Questions/Encoder');
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

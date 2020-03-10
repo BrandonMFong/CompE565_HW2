@@ -2,6 +2,8 @@
 
 % 4:2:0 SubSample
 ycbcrsubsample = GetCbCrSubSample(); % From GetSubSample.m
+% chromeCB = ycbcrsubsample(:,:,Cb);
+% chromeCR = ycbcrsubsample(:,:,Cr);
 luma = GetLuma(); % From GetLuma.m
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -9,23 +11,31 @@ luma = GetLuma(); % From GetLuma.m
 % • Please display the DCT coefficient matrix as well as image of the DCT transformed image blocks of the first 2
 % blocks in the 6th row (of blocks) from top for the luminance component. (15 points)
 
-% Enumerating rows, columns, and num of colors
-% [rows, columns, numberOfColorChannels] = size(ycbcrsubsample); 
-[rows, columns, numberOfColorChannels] = size(luma); 
-
 Y=1;Cb=2;Cr=3; % Define YCbCr component index
 
 % Define blocksize
 BlockSize = 8;
 
-% Get DCT 
-DCT_Y = GetDCT(luma,BlockSize);
-DCT_Cb = GetDCT(ycbcrsubsample(:,:,Cb),BlockSize);
-DCT_Cr = GetDCT(ycbcrsubsample(:,:,Cr),BlockSize);
+% GetDCT.m
+DCT_Y = GetDCT(luma,BlockSize)
+% DCT_Cb = GetDCT(ycbcrsubsample(:,:,Cb),BlockSize)
+% DCT_Cr = GetDCT(ycbcrsubsample(:,:,Cr),BlockSize)
 
 % Display the image
-figure, imshow(luma(:,:));title('ycbcrsubsample Image [Y]');
-figure, imshow(DCT_Y(:,:));title('DCT Image [Y]');
+
+% displaying the first two blocks
+figure, imshow(DCT_Y(6:14,1:8));title('DCT Image [Y]'); 
+figure, imshow(DCT_Y(6:14,9:16));title('DCT Image [Y]'); 
+
+% figure, imshow(luma);title('ycbcrsubsample Image [Y]');
+% figure, imshow(luma);title('DCT Image [Cb]');
+
+% figure, imshow(ycbcrsubsample(:,:,Cb));title('ycbcrsubsample Image [Cb]');
+% figure, imshow(DCT_Cb);title('DCT Image [Cb]');
+
+% figure, imshow(ycbcrsubsample(:,:,Cr));title('ycbcrsubsample Image [Cr]');
+% figure, imshow(DCT_Cr);title('DCT Image [Cr]');
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % (b) Quantize the DCT image by using the JPEG luminance and chrominance quantizer matrix from the lecture notes.
