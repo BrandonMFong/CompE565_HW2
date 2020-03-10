@@ -10,7 +10,8 @@ luma = GetLuma(); % From GetLuma.m
 % blocks in the 6th row (of blocks) from top for the luminance component. (15 points)
 
 % Enumerating rows, columns, and num of colors
-[rows, columns, numberOfColorChannels] = size(ycbcrsubsample); 
+% [rows, columns, numberOfColorChannels] = size(ycbcrsubsample); 
+[rows, columns, numberOfColorChannels] = size(luma); 
 
 Y=1;Cb=2;Cr=3; % Define YCbCr component index
 
@@ -29,12 +30,12 @@ DCT_Y = int32(luma(:,:,Y));
 % TODO working on Y component first
 for Row_MinInterval = 1:BlockSize:rows % sweeping rows
     if(Row_MaxInterval > rows) 
-        break; 
+        break; % Nothing left in the photo to sweep
     end % Bounding since I am inc by Blocksize
     
     for Column_MinInterval = 1:BlockSize:columns % Sweeping columns
         if (Column_MaxInterval > columns) 
-            break; 
+            Column_MaxInterval = BlockSize;
         end % Bounding since I am inc by Blocksize
 
         % Getting DCT Block [DCTImage[Block] <= DCTBlock]
