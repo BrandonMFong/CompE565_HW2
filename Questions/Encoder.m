@@ -11,15 +11,13 @@ luma = GetLuma(); % From GetLuma.m
 % • Please display the DCT coefficient matrix as well as image of the DCT transformed image blocks of the first 2
 % blocks in the 6th row (of blocks) from top for the luminance component. (15 points)
 
-Y=1;Cb=2;Cr=3; % Define YCbCr component index
-
-% Define blocksize
-BlockSize = 8;
+% Define constants in Constant.m
+const = Constants();
 
 % GetDCT.m
-DCT_Y = GetDCT(luma,BlockSize)
-% DCT_Cb = GetDCT(ycbcrsubsample(:,:,Cb),BlockSize)
-% DCT_Cr = GetDCT(ycbcrsubsample(:,:,Cr),BlockSize)
+DCT_Y = GetDCT(luma)
+% DCT_Cb = GetDCT(ycbcrsubsample(:,:,Cb))
+% DCT_Cr = GetDCT(ycbcrsubsample(:,:,Cr))
 
 % Display the image
 
@@ -28,12 +26,12 @@ figure, imshow(DCT_Y(6:14,1:8));title('DCT Image [Y]');
 figure, imshow(DCT_Y(6:14,9:16));title('DCT Image [Y]'); 
 
 % figure, imshow(luma);title('ycbcrsubsample Image [Y]');
-% figure, imshow(luma);title('DCT Image [Cb]');
+% figure, imshow(DCT_Y);title('DCT Image [Y]');
 
-% figure, imshow(ycbcrsubsample(:,:,Cb));title('ycbcrsubsample Image [Cb]');
+% figure, imshow(ycbcrsubsample(:,:,const.Cb));title('ycbcrsubsample Image [Cb]');
 % figure, imshow(DCT_Cb);title('DCT Image [Cb]');
 
-% figure, imshow(ycbcrsubsample(:,:,Cr));title('ycbcrsubsample Image [Cr]');
+% figure, imshow(ycbcrsubsample(:,:,const.Cr));title('ycbcrsubsample Image [Cr]');
 % figure, imshow(DCT_Cr);title('DCT Image [Cr]');
 
 

@@ -1,44 +1,44 @@
-function out = GetDCT(value,BlockSize)
-
-    [rows, columns] = size(value); 
-    DCT = int32(value); % Convert to 32 bit
+function out = GetDCT(Frame)
+    const = Constants();
+    [rows, columns] = size(Frame); 
+    DCT = int32(Frame); % Convert to 32 bit
 
     % Init interval variables when working with blocksizeXblocksize
-    Row_MaxInterval = BlockSize;
-    Column_MaxInterval = BlockSize;
+    Row_MaxInterval = const.BlockSize;
+    Column_MaxInterval = const.BlockSize;
     
-    for Row_MinInterval = 1:BlockSize:rows % sweeping rows
+    for Row_MinInterval = 1:const.BlockSize:rows % sweeping rows
         if(Row_MaxInterval > rows) 
             break; % Nothing left in the photo to sweep
         end % Bounding since I am inc by Blocksize
         
-        for Column_MinInterval = 1:BlockSize:columns % Sweeping columns
+        for Column_MinInterval = 1:const.BlockSize:columns % Sweeping columns
             if (Column_MaxInterval > columns) 
-                Column_MaxInterval = BlockSize; % reset
+                Column_MaxInterval = const.BlockSize; % reset
             end % Bounding since I am inc by Blocksize
 
             % Getting DCT Block [DCTImage[Block] <= DCTBlock]
-            Block = GetDCTBlock(int32(value(Row_MinInterval:Row_MaxInterval,Column_MinInterval:Column_MaxInterval)));
+            Block = GetDCTBlock(int32(Frame(Row_MinInterval:Row_MaxInterval,Column_MinInterval:Column_MaxInterval)));
             DCT(Row_MinInterval:Row_MaxInterval,Column_MinInterval:Column_MaxInterval) = Block;
 
             % Increment Column Block
-            Column_MaxInterval = Column_MaxInterval + BlockSize; % bound this
+            Column_MaxInterval = Column_MaxInterval + const.BlockSize; % bound this
         end
 
         % Increment Row Block
-        Row_MaxInterval = Row_MaxInterval + BlockSize; % bound this
+        Row_MaxInterval = Row_MaxInterval + const.BlockSize; % bound this
     end
 
     out = DCT;
 end
 
 
-function out = GetDCTBlock(Pixel) %Pixel is already 32 bit
-    [rows, columns] = size(Pixel);
-    DCTOutput = Pixel; % declare, ensures same type and size
+function out = GetDCTBlock(PixelBlock) %Pixel is already 32 bit
+    [rows, columns] = size(PixelBlock);
+    DCTOutput = PixelBlock; % declare, ensures same type and size
     for m = 0:rows-1
         for n = 0:columns-1
-            DCTOutput(m+1,n+1) = GetDCTCoefficient(cm_cn_handler(m,n),Pixel);
+            DCTOutput(m+1,n+1) = GetDCTCoefficient(cm_cn_handler(m,n),PixelBlock);
         end
     end
     out = DCTOutput;
