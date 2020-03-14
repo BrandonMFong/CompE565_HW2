@@ -4,36 +4,47 @@ function out = GetDCT(Frame)
     DCT = int32(Frame); % Convert to 32 bit
 
     % Init interval variables when working with blocksizeXblocksize
-    Row_MaxInterval = const.BlockSize;
-    Column_MaxInterval = const.BlockSize;
+    RowMax = const.BlockSize;
+    ColumnMax = const.BlockSize;
     
-    for Row_MinInterval = 1:const.BlockSize:rows % sweeping rows
-        if(Row_MaxInterval > rows) 
+    StatusRow = waitbar(0.5,'[DCT] Sweeping Rows...');
+    for RowMin = 1:const.BlockSize:rows % sweeping rows
+        if(RowMax > rows) 
             break; % Nothing left in the photo to sweep
         end % Bounding since I am inc by Blocksize
         
-        for Column_MinInterval = 1:const.BlockSize:columns % Sweeping columns
-            if (Column_MaxInterval > columns) 
-                Column_MaxInterval = const.BlockSize; % reset
+        StatusColumn = waitbar(1,'[DCT] Sweeping Columns...');
+        for ColumnMin = 1:const.BlockSize:columns % Sweeping columns
+
+            if (ColumnMax > columns) 
+                ColumnMax = const.BlockSize; % reset
             end % Bounding since I am inc by Blocksize
 
             % Getting DCT Block [DCTImage[Block] <= DCTBlock]
-            Block = GetDCTBlock(int32(Frame(Row_MinInterval:Row_MaxInterval,Column_MinInterval:Column_MaxInterval)));
-            DCT(Row_MinInterval:Row_MaxInterval,Column_MinInterval:Column_MaxInterval) = Block;
+            Block = GetDCTBlock(int32(Frame(RowMin:RowMax,ColumnMin:ColumnMax)));
+            DCT(RowMin:RowMax,ColumnMin:ColumnMax) = Block;
 
             % Increment Column Block
-            Column_MaxInterval = Column_MaxInterval + const.BlockSize; % bound this
+            ColumnMax = ColumnMax + const.BlockSize; % bound this
+
+            % Progress
+            waitbar((ColumnMin)/(columns),StatusColumn,"[DCT] Sweeping Columns...")
         end
+        close(StatusColumn)
 
         % Increment Row Block
-        Row_MaxInterval = Row_MaxInterval + const.BlockSize; % bound this
+        RowMax = RowMax + const.BlockSize; % bound this
+
+        % Progress
+        waitbar((RowMin)/(rows),StatusRow,"[DCT] Sweeping Rows...")
     end
+    close(StatusRow)
 
     out = DCT;
 end
 
 
-function out = GetDCTBlock(PixelBlock) %Pixel is already 32 bit
+function out = GetDCTBlock(PixelBlock) %PixelBlock is already 32 bit
     [rows, columns] = size(PixelBlock);
     DCTOutput = PixelBlock; % declare, ensures same type and size
     for m = 0:rows-1

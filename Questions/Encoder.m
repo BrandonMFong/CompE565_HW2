@@ -8,8 +8,8 @@ luma = GetLuma(); % From GetLuma.m
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % (a) Compute the 8x8 block DCT transform coefficients of the luminance and chrominance components of the image.
-% • Please display the DCT coefficient matrix as well as image of the DCT transformed image blocks of the first 2
-% blocks in the 6th row (of blocks) from top for the luminance component. (15 points)
+    % • Please display the DCT coefficient matrix as well as image of the DCT transformed image blocks of the first 2
+    % blocks in the 6th row (of blocks) from top for the luminance component. (15 points)
 
 % Define constants in Constant.m
 const = Constants();
@@ -23,7 +23,7 @@ DCT_Y = GetDCT(luma)
 
 % displaying the first two blocks
 figure, imshow(DCT_Y(6:14,1:8));title('DCT Image [Y]'); 
-figure, imshow(DCT_Y(6:14,9:16));title('DCT Image [Y]'); 
+figure, imshow(DCT_Y(6:14,9:16));title('DCT Image [Y]');
 
 % figure, imshow(luma);title('ycbcrsubsample Image [Y]');
 % figure, imshow(DCT_Y);title('DCT Image [Y]');
@@ -37,5 +37,13 @@ figure, imshow(DCT_Y(6:14,9:16));title('DCT Image [Y]');
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % (b) Quantize the DCT image by using the JPEG luminance and chrominance quantizer matrix from the lecture notes.
-% • Report the following output only for the first 2 blocks in the 6th row from top of the luminance component:
-% (a) DC DCT coefficient; (b) Zigzag scanned AC DCT coefficients. (20 points)
+    % • Report the following output only for the first 2 blocks in the 6th row from top of the luminance component:
+        % (a) DC DCT coefficient; 
+        % (b) Zigzag scanned AC DCT coefficients. (20 points)
+
+% Quantizer.m 
+QDCT_Y = Quantize(DCT_Y,const.Lum_Quant_Matrix);
+
+% b - a
+QDCT_Y(6:14,1:8) % First block 
+QDCT_Y(6:14,9:16) % Second block
