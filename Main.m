@@ -31,4 +31,9 @@ run('Questions/Encoder');
 % Other parameters here
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+% TODO 
+% - Figuring out the Inverse DCT algorithm
+%   - Copied methods from the DCT algorithm
+% - Figuring out after the Inverse DCT alg, we need to upsample the ycbcr img.
+%   - Using the replication method from function 6.2 HW1
 run('Questions/Decoder');

@@ -12,13 +12,13 @@ function out = Quantize(Frame,QuantizationMatrix)
     RowMax = const.BlockSize;
     ColumnMax = const.BlockSize;
     
-    StatusRow = waitbar(-100,'[Quantize] Sweeping Rows...');
+    StatusRow = waitbar(0,'[Quantize] Sweeping Rows...');
     for RowMin = 1:const.BlockSize:rows % sweeping rows
         if(RowMax > rows) 
             break; % Nothing left in the photo to sweep
         end % Bounding since I am inc by Blocksize
         
-        StatusColumn = waitbar(100,'[Quantize] Sweeping Columns...');
+        StatusColumn = waitbar(0,'[Quantize] Sweeping Columns...');
         for ColumnMin = 1:const.BlockSize:columns % Sweeping columns
             if (ColumnMax > columns) 
                 ColumnMax = const.BlockSize; % reset

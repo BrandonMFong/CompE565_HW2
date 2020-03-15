@@ -1,9 +1,9 @@
 % Encoder: (Use 4:2:0 YCbCr component image)
 
 % 4:2:0 SubSample
-ycbcrsubsample = GetCbCrSubSample(); % From GetSubSample.m
-% chromeCB = ycbcrsubsample(:,:,Cb);
-% chromeCR = ycbcrsubsample(:,:,Cr);
+cbcrsubsample = GetCbCrSubSample(); % From GetSubSample.m
+% chromeCB = cbcrsubsample(:,:,Cb);
+% chromeCR = cbcrsubsample(:,:,Cr);
 luma = GetLuma(); % From GetLuma.m
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -15,24 +15,19 @@ luma = GetLuma(); % From GetLuma.m
 const = Constants();
 
 % GetDCT.m
-DCT_Y = GetDCT(luma)
-% DCT_Cb = GetDCT(ycbcrsubsample(:,:,Cb))
-% DCT_Cr = GetDCT(ycbcrsubsample(:,:,Cr))
+DCT_Y = GetDCT(luma);
+DCT_CbCr = cbcrsubsample;
+%TODO step into this and see if everything is calculating correctly
+DCT_CbCr(:,:,const.Cb) = GetDCT(cbcrsubsample(:,:,const.Cb));
+DCT_CbCr(:,:,const.Cr) = GetDCT(cbcrsubsample(:,:,const.Cr));
+DCT_Cb = DCT_CbCr(:,:,const.Cb);
+DCT_Cr = DCT_CbCr(:,:,const.Cr);
 
 % Display the image
-
-% displaying the first two blocks
-figure, imshow(DCT_Y(6:14,1:8));title('DCT Image [Y]'); 
-figure, imshow(DCT_Y(6:14,9:16));title('DCT Image [Y]');
-
-% figure, imshow(luma);title('ycbcrsubsample Image [Y]');
-% figure, imshow(DCT_Y);title('DCT Image [Y]');
-
-% figure, imshow(ycbcrsubsample(:,:,const.Cb));title('ycbcrsubsample Image [Cb]');
-% figure, imshow(DCT_Cb);title('DCT Image [Cb]');
-
-% figure, imshow(ycbcrsubsample(:,:,const.Cr));title('ycbcrsubsample Image [Cr]');
-% figure, imshow(DCT_Cr);title('DCT Image [Cr]');
+Block1 = DCT_Y(41:48,1:8);
+Block2 = DCT_Y(41:48,9:16);
+figure, imshow(Block1);title('DCT Image - Block 1 [Y]'); 
+figure, imshow(Block2);title('DCT Image - Block 2 [Y]');
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -43,7 +38,12 @@ figure, imshow(DCT_Y(6:14,9:16));title('DCT Image [Y]');
 
 % Quantizer.m 
 QDCT_Y = Quantize(DCT_Y,const.Lum_Quant_Matrix);
+QDCT_Cb = Quantize(DCT_Cb,const.Chrom_Quant_Matrix);
+QDCT_Cr = Quantize(DCT_Cr,const.Chrom_Quant_Matrix);
 
 % b - a
-QDCT_Y(6:14,1:8) % First block 
-QDCT_Y(6:14,9:16) % Second block
+QDCT_Y(41:48,1:8) % First block 
+QDCT_Y(41:48,9:16) % Second block
+
+% b - b 
+% TODO do the zig zag scan
