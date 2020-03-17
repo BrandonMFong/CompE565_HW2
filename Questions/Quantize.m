@@ -12,13 +12,12 @@ function out = Quantize(Frame,QuantizationMatrix)
     RowMax = const.BlockSize;
     ColumnMax = const.BlockSize;
     
-    StatusRow = waitbar(0,'[Quantize] Sweeping Rows...');
+    StatusRow = waitbar(0,'Quantizing');
     for RowMin = 1:const.BlockSize:rows % sweeping rows
         if(RowMax > rows) 
             break; % Nothing left in the photo to sweep
         end % Bounding since I am inc by Blocksize
         
-        StatusColumn = waitbar(0,'[Quantize] Sweeping Columns...');
         for ColumnMin = 1:const.BlockSize:columns % Sweeping columns
             if (ColumnMax > columns) 
                 ColumnMax = const.BlockSize; % reset
@@ -30,17 +29,13 @@ function out = Quantize(Frame,QuantizationMatrix)
 
             % Increment Column Block
             ColumnMax = ColumnMax + const.BlockSize; % bound this
-
-            % Progress
-            waitbar((ColumnMin)/(columns),StatusColumn,"[Quantize] Sweeping Columns...")
         end
-        close(StatusColumn)
 
         % Increment Row Block
         RowMax = RowMax + const.BlockSize; % bound this
 
         % Progress
-        waitbar((RowMin)/(rows),StatusRow,"[Quantize] Sweeping Rows...")
+        waitbar((RowMin)/(rows),StatusRow,"Quantizing")
     end
     close(StatusRow)
     out = Q;

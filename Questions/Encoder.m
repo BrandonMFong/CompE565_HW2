@@ -24,10 +24,10 @@ DCT_Cb = DCT_CbCr(:,:,const.Cb);
 DCT_Cr = DCT_CbCr(:,:,const.Cr);
 
 % Display the image
-Block1 = DCT_Y(41:48,1:8);
-Block2 = DCT_Y(41:48,9:16);
-figure, imshow(Block1);title('DCT Image - Block 1 [Y]'); 
-figure, imshow(Block2);title('DCT Image - Block 2 [Y]');
+DCTBlock1 = DCT_Y(41:48,1:8);
+DCTBlock2 = DCT_Y(41:48,9:16);
+figure, imshow(DCTBlock1);title('DCT Image - Block 1 [Y]'); 
+figure, imshow(DCTBlock2);title('DCT Image - Block 2 [Y]');
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -42,8 +42,8 @@ QDCT_Cb = Quantize(DCT_Cb,const.Chrom_Quant_Matrix);
 QDCT_Cr = Quantize(DCT_Cr,const.Chrom_Quant_Matrix);
 
 % b - a
-QDCT_Y(41:48,1:8) % First block 
-QDCT_Y(41:48,9:16) % Second block
+IDCTBlock1 = QDCT_Y(41:48,1:8) % First block 
+IDCTBlock2 = QDCT_Y(41:48,9:16) % Second block
 
 % b - b 
 % TODO do the zig zag scan

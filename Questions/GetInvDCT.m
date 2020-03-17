@@ -8,13 +8,12 @@ function out = GetInvDCT(Frame)
     RowMax = const.BlockSize;
     ColumnMax = const.BlockSize;
     
-    StatusRow = waitbar(0,'[Inverse DCT] Sweeping Rows...');
+    StatusRow = waitbar(0,'Calculating Inverse DCT');
     for RowMin = 1:const.BlockSize:rows % sweeping rows
         if(RowMax > rows) 
             break; % Nothing left in the photo to sweep
         end % Bounding since I am inc by Blocksize
         
-        StatusColumn = waitbar(0,'[Inverse DCT] Sweeping Columns...');
         for ColumnMin = 1:const.BlockSize:columns % Sweeping columns
 
             if (ColumnMax > columns) 
@@ -27,17 +26,13 @@ function out = GetInvDCT(Frame)
 
             % Increment Column Block
             ColumnMax = ColumnMax + const.BlockSize; % bound this
-
-            % Progress
-            waitbar((ColumnMin)/(columns),StatusColumn,"[Inverse DCT] Sweeping Columns...")
         end
-        close(StatusColumn)
 
         % Increment Row Block
         RowMax = RowMax + const.BlockSize; % bound this
 
         % Progress
-        waitbar((RowMin)/(rows),StatusRow,"[Inverse DCT] Sweeping Rows...")
+        waitbar((RowMin)/(rows),StatusRow,"Calculating Inverse DCT")
     end
     close(StatusRow)
 

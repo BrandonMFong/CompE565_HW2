@@ -1,20 +1,20 @@
 % Takes the frame and partitions it by the block 
+
 function out = GetDCT(Frame)
     const = Constants();
     [rows, columns] = size(Frame); 
-    DCT = int32(Frame); % Convert to 32 bit
+    DCT = double(Frame); % Convert to 32 bit
 
     % Init interval variables when working with blocksizeXblocksize
     RowMax = const.BlockSize;
     ColumnMax = const.BlockSize;
     
-    StatusRow = waitbar(0,'[DCT] Sweeping Rows...');
+    StatusRow = waitbar(0,'Calculating DCT');
     for RowMin = 1:const.BlockSize:rows % sweeping rows
         if(RowMax > rows) 
             break; % Nothing left in the photo to sweep
         end % Bounding since I am inc by Blocksize
         
-        StatusColumn = waitbar(0,'[DCT] Sweeping Columns...');
         for ColumnMin = 1:const.BlockSize:columns % Sweeping columns
 
             if (ColumnMax > columns) 
@@ -22,22 +22,18 @@ function out = GetDCT(Frame)
             end % Bounding since I am inc by Blocksize
 
             % Getting DCT Block [DCTImage[Block] <= DCTBlock]
-            Block = GetDCTBlock(int32(Frame(RowMin:RowMax,ColumnMin:ColumnMax)));
+            Block = GetDCTBlock(double(Frame(RowMin:RowMax,ColumnMin:ColumnMax)));
             DCT(RowMin:RowMax,ColumnMin:ColumnMax) = Block;
 
             % Increment Column Block
             ColumnMax = ColumnMax + const.BlockSize; % bound this
-
-            % Progress
-            waitbar((ColumnMin)/(columns),StatusColumn,"[DCT] Sweeping Columns...")
         end
-        close(StatusColumn)
 
         % Increment Row Block
         RowMax = RowMax + const.BlockSize; % bound this
 
         % Progress
-        waitbar((RowMin)/(rows),StatusRow,"[DCT] Sweeping Rows...")
+        waitbar((RowMin)/(rows),StatusRow,"Calculating DCT")
     end
     close(StatusRow)
 
@@ -61,15 +57,16 @@ function out = GetDCTCoefficient(var,pixel)
     [M, N] = size(pixel);
 
     % Calculate the inner loop of DCT
-    Loop = int32(0);
+    Loop = double(0);
     for i = 0:(M-1)
         for j = 0:(N-1)
             part1 = cos(((2*i + 1)*var.m*pi)/(2*M));
             part2 = cos(((2*j + 1)*var.n*pi)/(2*N));
             pix = pixel(i+1, j+1, :); % Index pixel
-            Loop = Loop + int32(pix * part1 * part2);
+            Loop = Loop + double(pix * part1 * part2);
         end
     end
-    out = (2/sqrt(M*N)) * var.cm * var.cn * Loop;
+    x = double((2/sqrt(M*N)) * var.cn * var.cm * Loop);
+    out = x;
 end
 
