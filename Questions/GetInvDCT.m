@@ -39,28 +39,29 @@ function out = GetInvDCT(Frame)
     out = ReconstructedImg;
 end
 
-
+% Scans the block and returns a pixel for every coefficient
 function out = GetInvDCTBlock(PixelBlock) % PixelBlock is already 32 bit
     [rows, columns] = size(PixelBlock);
     InvDCTOutput = PixelBlock; % declare, ensures same type and size
-    for m = 0:rows-1
-        for n = 0:columns-1
-            InvDCTOutput(m+1,n+1) = GetPixelCoefficient(cm_cn_handler(m,n),PixelBlock);
+    for i = 0:rows-1
+        for j = 0:columns-1
+            InvDCTOutput(i+1,j+1) = GetPixelCoefficient(i,j,PixelBlock);
         end
     end
     out = InvDCTOutput;
 end
 
-function out = GetPixelCoefficient(var,pixel)
-    [M, N] = size(pixel);
+function out = GetPixelCoefficient(i,j,pixels)
+    [M, N] = size(pixels);
 
     % Calculate the inner loop of DCT
     Loop = int32(0);
-    for i = 0:(M-1)
-        for j = 0:(N-1)
-            part1 = cos(((2*i + 1)*var.m*pi)/(2*M));
-            part2 = cos(((2*j + 1)*var.n*pi)/(2*N));
-            pix = pixel(i+1, j+1, :); % Index pixel
+    for m = 0:(M-1)
+        for n = 0:(N-1)
+            var = cm_cn_handler(m,n);
+            part1 = cos(((2*i + 1)*m*pi)/(2*M));
+            part2 = cos(((2*j + 1)*n*pi)/(2*N));
+            pix = pixels(m+1, n+1, :); % Index pixel
             Loop = Loop + int32(var.cm * var.cn * pix * part1 * part2);
         end
     end

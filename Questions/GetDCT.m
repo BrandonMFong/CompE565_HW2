@@ -40,7 +40,7 @@ function out = GetDCT(Frame)
     out = DCT;
 end
 
-% Takes the block and computes the coefficient 
+% Scans through the block and calculates a coefficient for every pixel
 function out = GetDCTBlock(PixelBlock) %PixelBlock is already 32 bit
     [rows, columns] = size(PixelBlock);
     DCTOutput = PixelBlock; % declare, ensures same type and size
@@ -53,8 +53,8 @@ function out = GetDCTBlock(PixelBlock) %PixelBlock is already 32 bit
 end
 
 % Calculates the coefficient
-function out = GetDCTCoefficient(var,pixel)
-    [M, N] = size(pixel);
+function out = GetDCTCoefficient(var,pixels)
+    [M, N] = size(pixels);
 
     % Calculate the inner loop of DCT
     Loop = double(0);
@@ -62,7 +62,7 @@ function out = GetDCTCoefficient(var,pixel)
         for j = 0:(N-1)
             part1 = cos(((2*i + 1)*var.m*pi)/(2*M));
             part2 = cos(((2*j + 1)*var.n*pi)/(2*N));
-            pix = pixel(i+1, j+1, :); % Index pixel
+            pix = pixels(i+1, j+1, :); % Index pixel
             Loop = Loop + double(pix * part1 * part2);
         end
     end
