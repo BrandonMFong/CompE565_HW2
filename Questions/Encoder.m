@@ -17,6 +17,7 @@ const = Constants();
 % GetDCT.m
 DCT_Y = GetDCT(luma);
 DCT_CbCr = cbcrsubsample;
+
 %TODO step into this and see if everything is calculating correctly
 DCT_CbCr(:,:,const.Cb) = GetDCT(cbcrsubsample(:,:,const.Cb));
 DCT_CbCr(:,:,const.Cr) = GetDCT(cbcrsubsample(:,:,const.Cr));
@@ -47,3 +48,12 @@ IDCTBlock2 = QDCT_Y(41:48,9:16) % Second block
 
 % b - b 
 % TODO do the zig zag scan
+
+vector1 = ZigzagScan(IDCTBlock1);
+vector2 = ZigzagScan(IDCTBlock2);
+
+fprintf('%d ', vector1);
+fprintf('\n');
+fprintf('%d ', vector2);
+fprintf('\n');
+
