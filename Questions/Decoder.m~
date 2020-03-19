@@ -15,11 +15,11 @@
 const = Constants();
 
 IQuantized_QDCT_Y = IQuantize(QDCT_Y, const.Lum_Quant_Matrix);
+
 IQuantized_QDCT_Cb = IQuantize(QDCT_Cb, const.Chrom_Quant_Matrix);
-IQuantized_QDCT_Cr = IQuantize(QDCT_Cr, const.Chrom_Quant_Matrix);
 
 QDCT_Y(41:48,9:16)
-IQuantized_QDCT_Y(41:48,9:16)
+
 
 %luma(41:48,1:8)
 %luma(41:48,9:16)
