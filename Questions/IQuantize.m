@@ -26,7 +26,7 @@ for x = 1:rows
     end
         
     qX = qX + 1;
-    
+    qY = 1;
 end
 
 
