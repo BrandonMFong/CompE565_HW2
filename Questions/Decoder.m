@@ -31,4 +31,5 @@ Inverse_QDCT_CbCr(:,:,const.Cr) = FixCbCr(GetInvDCT(IQuantized_QDCT_CbCr(:,:,con
 % Upsample
 NewImgYCbCr = GetUpSample(Inverse_QDCT_Y,Inverse_QDCT_CbCr);
 NewImgRGB = ycbcr2rgb(NewImgYCbCr);
-figure, imshow(NewImgRGB);title('New Image');
+figure, imshow(NewImgYCbCr);title('New Image [YCbCr]');
+figure, imshow(NewImgRGB);title('New Image [RGB]');
