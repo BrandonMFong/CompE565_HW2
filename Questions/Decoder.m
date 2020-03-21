@@ -23,6 +23,6 @@ IQuantized_QDCT_Y(41:48,9:16)
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % (d) Reconstruct the image by computing Inverse DCT coefficients. (15 points)
-Inverse_QDCT_Y = GetInvDCT(IQuantized_QDCT_Y);
-Inverse_QDCT_Cb = GetInvDCT(IQuantized_QDCT_Cb);
-Inverse_QDCT_Cr = GetInvDCT(IQuantized_QDCT_Cr);
+Inverse_QDCT_Y = GetInvDCT(IQuantized_QDCT_Y,GetVarName(IQuantized_QDCT_Y));
+Inverse_QDCT_Cb = FixCbCr(GetInvDCT(IQuantized_QDCT_Cb,GetVarName(IQuantized_QDCT_Cb)));
+Inverse_QDCT_Cr = FixCbCr(GetInvDCT(IQuantized_QDCT_Cr,GetVarName(IQuantized_QDCT_Cr)));

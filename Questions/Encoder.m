@@ -14,13 +14,17 @@ luma = GetLuma(); % From GetLuma.m
 % Define constants in Constant.m
 const = Constants();
 
+% Debug
+CbComps = cbcrsubsample(:,:,const.Cb);
+CrComps = cbcrsubsample(:,:,const.Cr);
+
 % GetDCT.m
-DCT_Y = GetDCT(luma);
+DCT_Y = GetDCT(luma,GetVarName(luma));
 DCT_CbCr = cbcrsubsample;
 
 %TODO step into this and see if everything is calculating correctly
-DCT_CbCr(:,:,const.Cb) = GetDCT(cbcrsubsample(:,:,const.Cb));
-DCT_CbCr(:,:,const.Cr) = GetDCT(cbcrsubsample(:,:,const.Cr));
+DCT_CbCr(:,:,const.Cb) = GetDCT(cbcrsubsample(:,:,const.Cb),GetVarName(cbcrsubsample));
+DCT_CbCr(:,:,const.Cr) = GetDCT(cbcrsubsample(:,:,const.Cr),GetVarName(cbcrsubsample));
 DCT_Cb = DCT_CbCr(:,:,const.Cb);
 DCT_Cr = DCT_CbCr(:,:,const.Cr);
 
@@ -38,9 +42,9 @@ figure, imshow(DCTBlock2);title('DCT Image - Block 2 [Y]');
         % (b) Zigzag scanned AC DCT coefficients. (20 points)
 
 % Quantizer.m 
-QDCT_Y = Quantize(DCT_Y,const.Lum_Quant_Matrix);
-QDCT_Cb = Quantize(DCT_Cb,const.Chrom_Quant_Matrix);
-QDCT_Cr = Quantize(DCT_Cr,const.Chrom_Quant_Matrix);
+QDCT_Y = Quantize(DCT_Y,const.Lum_Quant_Matrix,GetVarName(DCT_Y));
+QDCT_Cb = Quantize(DCT_Cb,const.Chrom_Quant_Matrix,GetVarName(DCT_Cb));
+QDCT_Cr = Quantize(DCT_Cr,const.Chrom_Quant_Matrix,GetVarName(DCT_Cr));
 
 % b - a
 IDCTBlock1 = QDCT_Y(41:48,1:8) % First block 

@@ -3,7 +3,7 @@
 % Kind of the same logic of DCT except you are not averaging the whole block
 % No conversion needed since GetDCT() returns a 32 bit matrix
 
-function out = Quantize(Frame,QuantizationMatrix)
+function out = Quantize(Frame,QuantizationMatrix,var)
     const = Constants();
     [rows, columns] = size(Frame); 
     Q = Frame; % Convert to 32 bit
@@ -12,7 +12,7 @@ function out = Quantize(Frame,QuantizationMatrix)
     RowMax = const.BlockSize;
     ColumnMax = const.BlockSize;
     
-    StatusRow = waitbar(0,'Quantizing');
+    StatusRow = waitbar(0,sprintf('Quantizing [%s]',var));
     for RowMin = 1:const.BlockSize:rows % sweeping rows
         if(RowMax > rows) 
             break; % Nothing left in the photo to sweep
@@ -35,7 +35,7 @@ function out = Quantize(Frame,QuantizationMatrix)
         RowMax = RowMax + const.BlockSize; % bound this
 
         % Progress
-        waitbar((RowMin)/(rows),StatusRow,"Quantizing")
+        waitbar((RowMin)/(rows),StatusRow,sprintf('Quantizing [%s]',var))
     end
     close(StatusRow)
     out = Q;

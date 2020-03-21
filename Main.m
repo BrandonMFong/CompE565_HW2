@@ -1,4 +1,5 @@
 format long
+Setup;
 % HW1: Basic Digital Image Processing Operations
 % Due on 03/01/2020 (11:00 pm)
 % Joseph Morga & Brandon Fong
@@ -19,7 +20,6 @@ format long
 % Other parameters here
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% TODO figure out how to display the two individual Y DCT blocks
 run('Questions/Encoder');
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

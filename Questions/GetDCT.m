@@ -1,6 +1,6 @@
 % Takes the frame and partitions it by the block 
 
-function out = GetDCT(Frame)
+function out = GetDCT(Frame,var)
     const = Constants();
     [rows, columns] = size(Frame); 
     DCT = double(Frame); % Convert to 32 bit
@@ -9,7 +9,7 @@ function out = GetDCT(Frame)
     RowMax = const.BlockSize;
     ColumnMax = const.BlockSize;
     
-    StatusRow = waitbar(0,'Calculating DCT');
+    StatusRow = waitbar(0,sprintf('Calculating DCT [%s]', var));
     for RowMin = 1:const.BlockSize:rows % sweeping rows
         if(RowMax > rows) 
             break; % Nothing left in the photo to sweep
@@ -33,7 +33,7 @@ function out = GetDCT(Frame)
         RowMax = RowMax + const.BlockSize; % bound this
 
         % Progress
-        waitbar((RowMin)/(rows),StatusRow,"Calculating DCT")
+        waitbar((RowMin)/(rows),StatusRow,sprintf('Calculating DCT [%s]', var))
     end
     close(StatusRow)
 

@@ -1,5 +1,5 @@
 % Takes the frame and partitions it by the block 
-function out = GetInvDCT(Frame)
+function out = GetInvDCT(Frame,var)
     const = Constants();
     [rows, columns] = size(Frame); 
     ReconstructedImg = int32(Frame); % Convert to 32 bit
@@ -8,7 +8,7 @@ function out = GetInvDCT(Frame)
     RowMax = const.BlockSize;
     ColumnMax = const.BlockSize;
     
-    StatusRow = waitbar(0,'Calculating Inverse DCT');
+    StatusRow = waitbar(0,sprintf('Calculating Inverse DCT [%s]',var));
     for RowMin = 1:const.BlockSize:rows % sweeping rows
         if(RowMax > rows) 
             break; % Nothing left in the photo to sweep
@@ -32,7 +32,7 @@ function out = GetInvDCT(Frame)
         RowMax = RowMax + const.BlockSize; % bound this
 
         % Progress
-        waitbar((RowMin)/(rows),StatusRow,"Calculating Inverse DCT")
+        waitbar((RowMin)/(rows),StatusRow,sprintf('Calculating Inverse DCT [%s]',var))
     end
     close(StatusRow)
 
