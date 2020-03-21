@@ -40,11 +40,11 @@ figure, imshow(DCTBlock2);title('DCT Image - Block 2 [Y]');
     % • Report the following output only for the first 2 blocks in the 6th row from top of the luminance component:
         % (a) DC DCT coefficient; 
         % (b) Zigzag scanned AC DCT coefficients. (20 points)
-
+QDCT_CbCr = DCT_CbCr;
 % Quantizer.m 
 QDCT_Y = Quantize(DCT_Y,const.Lum_Quant_Matrix,GetVarName(DCT_Y));
-QDCT_Cb = Quantize(DCT_Cb,const.Chrom_Quant_Matrix,GetVarName(DCT_Cb));
-QDCT_Cr = Quantize(DCT_Cr,const.Chrom_Quant_Matrix,GetVarName(DCT_Cr));
+QDCT_CbCr(:,:,const.Cb) = Quantize(DCT_CbCr(:,:,const.Cb),const.Chrom_Quant_Matrix,GetVarName(DCT_Cb));
+QDCT_CbCr(:,:,const.Cr) = Quantize(DCT_CbCr(:,:,const.Cr),const.Chrom_Quant_Matrix,GetVarName(DCT_Cr));
 
 % b - a
 IDCTBlock1 = QDCT_Y(41:48,1:8) % First block 

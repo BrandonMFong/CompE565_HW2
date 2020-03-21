@@ -1,6 +1,7 @@
 {
     "Paths":[
         {"Path": "./Questions"},
-        {"Path": "./Questions/Misc"}
+        {"Path": "./Questions/Misc"},
+        {"Path": "./QuantizationMatrices"}
     ]
 }

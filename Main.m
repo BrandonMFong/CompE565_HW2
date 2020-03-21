@@ -1,7 +1,5 @@
-format long
 Setup;
 % HW1: Basic Digital Image Processing Operations
-% Due on 03/01/2020 (11:00 pm)
 % Joseph Morga & Brandon Fong
 % CompE 565 Homework 2
 % Due Date: Sunday, March 22, 2020 11:00 pm
@@ -20,7 +18,7 @@ Setup;
 % Other parameters here
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-run('Questions/Encoder');
+Encoder;
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Problem 2: Display each band (Red, Green and Blue) of the image file (15 points)
@@ -32,9 +30,17 @@ run('Questions/Encoder');
 % Other parameters here
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% TODO 
-% - Figuring out the Inverse DCT algorithm
-%   - Copied methods from the DCT algorithm
-% - Figuring out after the Inverse DCT alg, we need to upsample the ycbcr img.
-%   - Using the replication method from function 6.2 HW1
-run('Questions/Decoder');
+Decoder;
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Problem 3: ** Required by guidlines 
+% • Display the Error Image (by subtracting the reconstructed image form the
+% original) for the luminance image. (10 points)
+% • PSNR for the luminance component of the decoded image. (10 points)
+% Implementation 1: Display each band
+% M-file name: Questions\Question2.m
+% Usage: NA
+% Location of output image: NA
+% Parameters: NA
+% Other parameters here
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

@@ -1,0 +1,4 @@
+https://www.mathworks.com/help/matlab/ref/try.html
+https://www.mathworks.com/help/matlab/ref/jsondecode.html
+https://www.mathworks.com/help/matlab/ref/addpath.html
+https://www.mathworks.com/help/matlab/matlab_oop/user-defined-classes.html
