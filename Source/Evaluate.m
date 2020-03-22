@@ -4,6 +4,7 @@
 
 % Upsample
 NewImgYCbCr = GetUpSample(Inverse_QDCT_Y,Inverse_QDCT_CbCr);
+
 NewImgRGB = ycbcr2rgb(NewImgYCbCr);
 figure, FigC = imshow(NewImgYCbCr);title('New Image [YCbCr]');
 figure, FigD = imshow(NewImgRGB);title('New Image [RGB]');
@@ -18,3 +19,8 @@ PSNRValue = GetPSNR(OriginalImgRGB,NewImgRGB);
 fprintf('Y PSNR %f\n', PSNRValue(:,:,const.Y));
 fprintf('Cb PSNR %f\n', PSNRValue(:,:,const.Cb));
 fprintf('Cr PSNR %f\n', PSNRValue(:,:,const.Cr));
+
+%%%% Debug %%%%
+PSNR_Y = PSNRValue(:,:,const.Y);
+PSNR_Cb = PSNRValue(:,:,const.Y);
+PSNR_Cr = PSNRValue(:,:,const.Y);

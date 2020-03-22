@@ -3,6 +3,9 @@ function out = GetUpSample(luma,CbCr) % Replication
     const = Constants();
     Frame = luma; % init just to ensure dimensions           
     Frame(1:2:end,1:2:end,const.Cb:const.Cr) = CbCr(:,:,const.Cb:const.Cr);
+    Y = Frame(:,:,const.Y);
+    Cb = Frame(:,:,const.Cb);
+    Cr = Frame(:,:,const.Cr);
     [rows,columns] = size(Frame(:,:,const.Y));
     for r = 1:rows
         for c = 1:columns
@@ -19,5 +22,8 @@ function out = GetUpSample(luma,CbCr) % Replication
             end
         end
     end
+    Yn = Frame(:,:,const.Y);
+    Cbn = Frame(:,:,const.Cb);
+    Crn = Frame(:,:,const.Cr);
     out = uint8(Frame);
 end

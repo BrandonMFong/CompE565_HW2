@@ -29,3 +29,8 @@ Inverse_QDCT_CbCr(:,:,const.Cb) = FixCbCr(GetInvDCT(IQuantized_QDCT_CbCr(:,:,con
 Inverse_QDCT_CbCr(:,:,const.Cr) = FixCbCr(GetInvDCT(IQuantized_QDCT_CbCr(:,:,const.Cr),GetVarName(IQuantized_QDCT_CbCr)));
 
 
+% Debug
+IQuantized_QDCT_Cb = IQuantized_QDCT_CbCr(:,:,const.Cb);
+IQuantized_QDCT_Cr = IQuantized_QDCT_CbCr(:,:,const.Cr);
+Inverse_QDCT_Cb = Inverse_QDCT_CbCr(:,:,const.Cb);
+Inverse_QDCT_Cr = Inverse_QDCT_CbCr(:,:,const.Cr);

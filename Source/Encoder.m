@@ -20,11 +20,11 @@ CrComps = cbcrsubsample(:,:,const.Cr);
 
 % GetDCT.m
 DCT_Y = GetDCT(luma,GetVarName(luma));
-DCT_CbCr = cbcrsubsample;
 
-%TODO step into this and see if everything is calculating correctly
+DCT_CbCr = cbcrsubsample;
 DCT_CbCr(:,:,const.Cb) = GetDCT(cbcrsubsample(:,:,const.Cb),GetVarName(cbcrsubsample));
 DCT_CbCr(:,:,const.Cr) = GetDCT(cbcrsubsample(:,:,const.Cr),GetVarName(cbcrsubsample));
+
 DCT_Cb = DCT_CbCr(:,:,const.Cb);
 DCT_Cr = DCT_CbCr(:,:,const.Cr);
 
