@@ -5,7 +5,7 @@ clear
 try 
     if ~exist('Outputs', 'dir')
         mkdir('Outputs')
-     end 
+    end 
     var = jsondecode(fileread('Paths.json'));
     [rows, columns] = size(var.Paths);
     for r = 1:rows

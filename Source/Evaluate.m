@@ -6,13 +6,13 @@
 NewImgYCbCr = GetUpSample(Inverse_QDCT_Y,Inverse_QDCT_CbCr);
 
 NewImgRGB = ycbcr2rgb(NewImgYCbCr);
-figure, FigC = imshow(NewImgYCbCr);title('New Image [YCbCr]');
-figure, FigD = imshow(NewImgRGB);title('New Image [RGB]');
+figure, imshow(NewImgYCbCr);title('New Image [YCbCr]');
+figure, imshow(NewImgRGB);title('New Image [RGB]');
 
 OriginalImgRGB = imread('Flooded_house.jpg','jpg');
 
 DiffImg = GetDifference(OriginalImgRGB,NewImgRGB);
-figure, FigE = imshow(DiffImg);title('Difference Image');
+figure, imshow(DiffImg);title('Difference Image');
 
 PSNRValue = GetPSNR(OriginalImgRGB,NewImgRGB);
 

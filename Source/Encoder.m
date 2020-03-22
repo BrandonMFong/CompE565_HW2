@@ -2,8 +2,6 @@
 
 % 4:2:0 SubSample
 cbcrsubsample = GetCbCrSubSample(); % From GetSubSample.m
-% chromeCB = cbcrsubsample(:,:,Cb);
-% chromeCR = cbcrsubsample(:,:,Cr);
 luma = GetLuma(); % From GetLuma.m
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -20,7 +18,6 @@ CrComps = cbcrsubsample(:,:,const.Cr);
 
 % GetDCT.m
 DCT_Y = GetDCT(luma,GetVarName(luma));
-
 DCT_CbCr = double(cbcrsubsample);
 DCT_CbCr(:,:,const.Cb) = GetDCT(cbcrsubsample(:,:,const.Cb),GetVarName(cbcrsubsample));
 DCT_CbCr(:,:,const.Cr) = GetDCT(cbcrsubsample(:,:,const.Cr),GetVarName(cbcrsubsample));
@@ -37,8 +34,9 @@ figure, imshow(DCTBlock2);title('DCT Image - Block 2 [Y]');
     % • Report the following output only for the first 2 blocks in the 6th row from top of the luminance component:
         % (a) DC DCT coefficient; 
         % (b) Zigzag scanned AC DCT coefficients. (20 points)
-QDCT_CbCr = DCT_CbCr;
+
 % Quantizer.m 
+QDCT_CbCr = DCT_CbCr;
 QDCT_Y = Quantize(DCT_Y,const.Lum_Quant_Matrix,GetVarName(DCT_Y));
 QDCT_CbCr(:,:,const.Cb) = Quantize(DCT_CbCr(:,:,const.Cb),const.Chrom_Quant_Matrix,GetVarName(DCT_CbCr));
 QDCT_CbCr(:,:,const.Cr) = Quantize(DCT_CbCr(:,:,const.Cr),const.Chrom_Quant_Matrix,GetVarName(DCT_CbCr));
@@ -48,8 +46,6 @@ IDCTBlock1 = QDCT_Y(41:48,1:8) % First block
 IDCTBlock2 = QDCT_Y(41:48,9:16) % Second block
 
 % b - b 
-% TODO do the zig zag scan
-
 vector1 = ZigzagScan(IDCTBlock1);
 vector2 = ZigzagScan(IDCTBlock2);
 
