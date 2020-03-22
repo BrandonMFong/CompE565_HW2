@@ -1,7 +1,12 @@
 {
     "Paths":[
-        {"Path": "./Questions"},
-        {"Path": "./Questions/Misc"},
-        {"Path": "./QuantizationMatrices"}
+        {"Path": "./Source"},
+        {"Path": "./Source/DCT"},
+        {"Path": "./Source/Misc"},
+        {"Path": "./Source/Quantization"},
+        {"Path": "./Source/Misc"},
+        {"Path": "./Source/Reconstruct"},
+        {"Path": "./QuantizationMatrices"},
+        {"Path": "./Img"}
     ]
 }

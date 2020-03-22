@@ -31,8 +31,8 @@ DCT_Cr = DCT_CbCr(:,:,const.Cr);
 % Display the image
 DCTBlock1 = DCT_Y(41:48,1:8);
 DCTBlock2 = DCT_Y(41:48,9:16);
-figure, imshow(DCTBlock1);title('DCT Image - Block 1 [Y]'); 
-figure, imshow(DCTBlock2);title('DCT Image - Block 2 [Y]');
+figure;FigA = imshow(DCTBlock1);title('DCT Image - Block 1 [Y]'); 
+figure;FigB = imshow(DCTBlock2);title('DCT Image - Block 2 [Y]');
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
