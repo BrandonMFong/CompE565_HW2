@@ -21,18 +21,15 @@ CrComps = cbcrsubsample(:,:,const.Cr);
 % GetDCT.m
 DCT_Y = GetDCT(luma,GetVarName(luma));
 
-DCT_CbCr = cbcrsubsample;
+DCT_CbCr = double(cbcrsubsample);
 DCT_CbCr(:,:,const.Cb) = GetDCT(cbcrsubsample(:,:,const.Cb),GetVarName(cbcrsubsample));
 DCT_CbCr(:,:,const.Cr) = GetDCT(cbcrsubsample(:,:,const.Cr),GetVarName(cbcrsubsample));
-
-DCT_Cb = DCT_CbCr(:,:,const.Cb);
-DCT_Cr = DCT_CbCr(:,:,const.Cr);
 
 % Display the image
 DCTBlock1 = DCT_Y(41:48,1:8);
 DCTBlock2 = DCT_Y(41:48,9:16);
-figure;FigA = imshow(DCTBlock1);title('DCT Image - Block 1 [Y]'); 
-figure;FigB = imshow(DCTBlock2);title('DCT Image - Block 2 [Y]');
+figure, imshow(DCTBlock1);title('DCT Image - Block 1 [Y]'); 
+figure, imshow(DCTBlock2);title('DCT Image - Block 2 [Y]');
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -43,8 +40,8 @@ figure;FigB = imshow(DCTBlock2);title('DCT Image - Block 2 [Y]');
 QDCT_CbCr = DCT_CbCr;
 % Quantizer.m 
 QDCT_Y = Quantize(DCT_Y,const.Lum_Quant_Matrix,GetVarName(DCT_Y));
-QDCT_CbCr(:,:,const.Cb) = Quantize(DCT_CbCr(:,:,const.Cb),const.Chrom_Quant_Matrix,GetVarName(DCT_Cb));
-QDCT_CbCr(:,:,const.Cr) = Quantize(DCT_CbCr(:,:,const.Cr),const.Chrom_Quant_Matrix,GetVarName(DCT_Cr));
+QDCT_CbCr(:,:,const.Cb) = Quantize(DCT_CbCr(:,:,const.Cb),const.Chrom_Quant_Matrix,GetVarName(DCT_CbCr));
+QDCT_CbCr(:,:,const.Cr) = Quantize(DCT_CbCr(:,:,const.Cr),const.Chrom_Quant_Matrix,GetVarName(DCT_CbCr));
 
 % b - a
 IDCTBlock1 = QDCT_Y(41:48,1:8) % First block 
@@ -61,3 +58,9 @@ fprintf('\n');
 fprintf('%d ', vector2);
 fprintf('\n');
 
+%%% Debug %%%
+
+DCT_Cb = DCT_CbCr(:,:,const.Cb);
+DCT_Cr = DCT_CbCr(:,:,const.Cr);
+QDCT_Cb = QDCT_CbCr(:,:,const.Cb);
+QDCT_Cr = QDCT_CbCr(:,:,const.Cr);

@@ -1,8 +1,19 @@
 % Takes the frame and partitions it by the block 
 
 function out = GetDCT(Frame,var)
+    ConcatFlag = false;
     const = Constants();
     [rows, columns] = size(Frame); 
+
+    % Testing rows cannot create an 8x8 block
+    if (mod(rows, 8) ~= 0)
+        AddRowsNum = mod(rows,8);
+        AddRowsVal = zeros(AddRowsNum, columns);
+        AddUp(AddRowsVal);
+        Frame = [Frame;AddRowsVal];
+        [rows, columns] = size(Frame); % Getting new size
+        ConcatFlag = true;
+    end
     DCT = double(Frame); % Convert to 32 bit
 
     % Init interval variables when working with blocksizeXblocksize
@@ -37,6 +48,12 @@ function out = GetDCT(Frame,var)
     end
     close(StatusRow)
 
+    if (ConcatFlag)
+        for i = 1:AddRowsNum
+            [row,column] = size(DCT);
+            DCT(row,:) = []; %removing last row
+        end
+    end
     out = DCT;
 end
 
@@ -68,5 +85,14 @@ function out = GetDCTCoefficient(var,pixels)
     end
     x = double((2/sqrt(M*N)) * var.cn * var.cm * Loop);
     out = x;
+end
+
+function Matrix = AddUp(Matrix)
+    [rows,columns] = size(Matrix);
+    for r = 1:rows
+        for c = 1:columns 
+            Matrix(r,c) = 128;     
+        end
+    end
 end
 
