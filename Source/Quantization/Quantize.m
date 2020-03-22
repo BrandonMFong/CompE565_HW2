@@ -4,9 +4,19 @@
 % No conversion needed since GetDCT() returns a 32 bit matrix
 
 function out = Quantize(Frame,QuantizationMatrix,var)
+    ConcatFlag = false;
     const = Constants();
     [rows, columns] = size(Frame); 
-    Q = Frame; % Convert to 32 bit
+
+    % If Frame does not have enough rows to create an 8x8 block
+    if (mod(rows, 8) ~= 0)
+        AddRowsNum = mod(rows,8);
+        AddRowsVal = zeros(AddRowsNum, columns);
+        Frame = [Frame;AddRowsVal];
+        [rows, columns] = size(Frame); % Getting new size
+        ConcatFlag = true;
+    end
+    Q = double(Frame); % Convert to 32 bit
 
     % Init interval variables when working with blocksizeXblocksize
     RowMax = const.BlockSize;
@@ -38,6 +48,14 @@ function out = Quantize(Frame,QuantizationMatrix,var)
         waitbar((RowMin)/(rows),StatusRow,sprintf('Quantizing [%s]',var))
     end
     close(StatusRow)
+
+    if (ConcatFlag) % Remove rows
+        for i = 1:AddRowsNum
+            [row,column] = size(Q);
+            Q(row,:) = []; %removing last row
+        end
+    end
+
     out = Q;
 end
 

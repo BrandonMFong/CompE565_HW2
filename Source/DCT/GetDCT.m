@@ -5,7 +5,7 @@ function out = GetDCT(Frame,var)
     const = Constants();
     [rows, columns] = size(Frame); 
 
-    % Testing rows cannot create an 8x8 block
+    % If Frame does not have enough rows to create an 8x8 block
     if (mod(rows, 8) ~= 0)
         AddRowsNum = mod(rows,8);
         AddRowsVal = zeros(AddRowsNum, columns);
@@ -14,7 +14,7 @@ function out = GetDCT(Frame,var)
         [rows, columns] = size(Frame); % Getting new size
         ConcatFlag = true;
     end
-    DCT = double(Frame); % Convert to 32 bit
+    DCT = double(Frame); % Convert to double
 
     % Init interval variables when working with blocksizeXblocksize
     RowMax = const.BlockSize;
@@ -48,7 +48,7 @@ function out = GetDCT(Frame,var)
     end
     close(StatusRow)
 
-    if (ConcatFlag)
+    if (ConcatFlag) % Remove rows
         for i = 1:AddRowsNum
             [row,column] = size(DCT);
             DCT(row,:) = []; %removing last row
