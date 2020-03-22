@@ -4,5 +4,5 @@ function out = GetPSNR(FrA,FrB)
     out = 10*log10(in);
 end
 function out = MSE(A,B)
-    MSEY = mean(mean((A-B).^2)); 
+    out = mean(mean((A-B).^2)); 
 end

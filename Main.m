@@ -44,3 +44,5 @@ Decoder;
 % Parameters: NA
 % Other parameters here
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Evaluate;

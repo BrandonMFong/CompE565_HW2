@@ -28,8 +28,4 @@ Inverse_QDCT_Y = GetInvDCT(IQuantized_QDCT_Y,GetVarName(IQuantized_QDCT_Y));
 Inverse_QDCT_CbCr(:,:,const.Cb) = FixCbCr(GetInvDCT(IQuantized_QDCT_CbCr(:,:,const.Cb),GetVarName(IQuantized_QDCT_CbCr)));
 Inverse_QDCT_CbCr(:,:,const.Cr) = FixCbCr(GetInvDCT(IQuantized_QDCT_CbCr(:,:,const.Cr),GetVarName(IQuantized_QDCT_CbCr)));
 
-% Upsample
-NewImgYCbCr = GetUpSample(Inverse_QDCT_Y,Inverse_QDCT_CbCr);
-NewImgRGB = ycbcr2rgb(NewImgYCbCr);
-figure, imshow(NewImgYCbCr);title('New Image [YCbCr]');
-figure, imshow(NewImgRGB);title('New Image [RGB]');
+

@@ -7,6 +7,7 @@ try
     % Paths for project
     % addpath './Questions';
     % addpath './Questions/Misc';
+    % addpath './QuantizationMatrices';
 
     % B
     var = jsondecode(fileread('Paths.json'));
