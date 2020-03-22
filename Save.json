@@ -5,22 +5,47 @@
                 {
                     "VariableName":"PSNR_Y",
                     "Path":"./Outputs/PSNR_Y.txt",
-                    "IsMatrix":"false"
+                    "Type":"Constant"
                 },
                 {
                     "VariableName":"PSNR_Cb",
                     "Path":"./Outputs/PSNR_Cb.txt",
-                    "IsMatrix":"false"
+                    "Type":"Constant"
                 },
                 {
                     "VariableName":"PSNR_Cr",
                     "Path":"./Outputs/PSNR_Cr.txt",
-                    "IsMatrix":"false"
+                    "Type":"Constant"
                 },
                 {
                     "VariableName":"Inverse_QDCT_Cb",
                     "Path":"./Outputs/Inverse_QDCT_Cb.txt",
-                    "IsMatrix":"true"
+                    "Type":"Matrix"
+                },
+                {
+                    "VariableName":"DCTBlock1",
+                    "Path":"./Outputs/DCTBlock1.jpg",
+                    "Type":"Image"
+                },
+                {
+                    "VariableName":"DCTBlock2",
+                    "Path":"./Outputs/DCTBlock2.jpg",
+                    "Type":"Image"
+                },
+                {
+                    "VariableName":"NewImgYCbCr",
+                    "Path":"./Outputs/NewImgYCbCr.jpg",
+                    "Type":"Image"
+                },
+                {
+                    "VariableName":"NewImgRGB",
+                    "Path":"./Outputs/NewImgRGB.jpg",
+                    "Type":"Image"
+                },
+                {
+                    "VariableName":"DiffImg",
+                    "Path":"./Outputs/DiffImg.jpg",
+                    "Type":"Image"
                 }
             ]
         }
