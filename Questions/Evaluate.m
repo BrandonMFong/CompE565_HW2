@@ -14,3 +14,7 @@ DiffImg = GetDifference(OriginalImgRGB,NewImgRGB);
 figure, imshow(DiffImg);title('Difference Image');
 
 PSNRValue = GetPSNR(OriginalImgRGB,NewImgRGB);
+
+fprintf('Y PSNR %f\n', PSNRValue(:,:,const.Y));
+fprintf('Cb PSNR %f\n', PSNRValue(:,:,const.Cb));
+fprintf('Cr PSNR %f\n', PSNRValue(:,:,const.Cr));
