@@ -5,7 +5,7 @@ Setup
 % Due Date: Sunday, March 22, 2020 11:00 pm
 % Name & ID : Joseph Morga (817281186), Brandon Fong (819295224)
 % email: jmorga@sdsu.edu, fong.m.brandon97@gmail.com
-% Link to Report: 
+% Link to Report: https://docs.google.com/document/d/1pDCAfS1MUaPxmLuEfVz3SwN3DK2Poj1Mux8VzdtdbcA/edit
 % Link to Git: https://github.com/BrandonMFong/CompE565_HW2
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -13,7 +13,7 @@ Setup
 % Implementation 1: Image => DCT => Qunatize + Zig Zag Scan
 % M-file name: Source\Encoder.m
 % Usage: NA
-% Location of output image: NA
+% Location of output image: .\Ouptuts\
 % Parameters: NA
 % Other parameters here
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -25,7 +25,7 @@ Encoder
 % Implementation 1: Inverese Quantize => Inverse DCT
 % M-file name: Source\Decoder.m
 % Usage: NA
-% Location of output image: NA
+% Location of output image: .\Ouptuts\
 % Parameters: NA
 % Other parameters here
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -40,7 +40,7 @@ Decoder
 % Implementation 1: Difference Image + PSNR
 % M-file name: Source\Evaluate.m
 % Usage: NA
-% Location of output image: NA
+% Location of output image: .\Ouptuts\
 % Parameters: NA
 % Other parameters here
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
