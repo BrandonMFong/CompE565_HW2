@@ -8,8 +8,9 @@ function out = GetDCT(Frame,var)
     % Testing rows cannot create an 8x8 block
     if (mod(rows, 8) ~= 0)
         AddRowsNum = mod(rows,8);
-        AddRowsZeroVal = zeros(AddRowsNum, columns);
-        Frame = [Frame;AddRowsZeroVal];
+        AddRowsVal = zeros(AddRowsNum, columns);
+        AddUp(AddRowsVal);
+        Frame = [Frame;AddRowsVal];
         [rows, columns] = size(Frame); % Getting new size
         ConcatFlag = true;
     end
@@ -84,5 +85,14 @@ function out = GetDCTCoefficient(var,pixels)
     end
     x = double((2/sqrt(M*N)) * var.cn * var.cm * Loop);
     out = x;
+end
+
+function Matrix = AddUp(Matrix)
+    [rows,columns] = size(Matrix);
+    for r = 1:rows
+        for c = 1:columns 
+            Matrix(r,c) = 128;     
+        end
+    end
 end
 

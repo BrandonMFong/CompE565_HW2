@@ -21,12 +21,9 @@ CrComps = cbcrsubsample(:,:,const.Cr);
 % GetDCT.m
 DCT_Y = GetDCT(luma,GetVarName(luma));
 
-DCT_CbCr = cbcrsubsample;
+DCT_CbCr = double(cbcrsubsample);
 DCT_CbCr(:,:,const.Cb) = GetDCT(cbcrsubsample(:,:,const.Cb),GetVarName(cbcrsubsample));
 DCT_CbCr(:,:,const.Cr) = GetDCT(cbcrsubsample(:,:,const.Cr),GetVarName(cbcrsubsample));
-
-DCT_Cb = DCT_CbCr(:,:,const.Cb);
-DCT_Cr = DCT_CbCr(:,:,const.Cr);
 
 % Display the image
 DCTBlock1 = DCT_Y(41:48,1:8);
@@ -61,3 +58,9 @@ fprintf('\n');
 fprintf('%d ', vector2);
 fprintf('\n');
 
+%%% Debug %%%
+
+DCT_Cb = DCT_CbCr(:,:,const.Cb);
+DCT_Cr = DCT_CbCr(:,:,const.Cr);
+QDCT_Cb = QDCT_CbCr(:,:,const.Cb);
+QDCT_Cr = QDCT_CbCr(:,:,const.Cr);
