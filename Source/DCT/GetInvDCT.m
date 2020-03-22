@@ -1,8 +1,18 @@
 % Takes the frame and partitions it by the block 
 function out = GetInvDCT(Frame,var)
+    ConcatFlag = false;
     const = Constants();
     [rows, columns] = size(Frame); 
     ReconstructedImg = int32(Frame); % Convert to 32 bit
+
+    % If Frame does not have enough rows to create an 8x8 block
+    if (mod(rows, 8) ~= 0)
+        AddRowsNum = mod(rows,8);
+        AddRowsVal = zeros(AddRowsNum, columns);
+        Frame = [Frame;AddRowsVal];
+        [rows, columns] = size(Frame); % Getting new size
+        ConcatFlag = true;
+    end
 
     % Init interval variables when working with blocksizeXblocksize
     RowMax = const.BlockSize;
@@ -35,6 +45,13 @@ function out = GetInvDCT(Frame,var)
         waitbar((RowMin)/(rows),StatusRow,sprintf('Calculating Inverse DCT [%s]',var))
     end
     close(StatusRow)
+
+    if (ConcatFlag) % Remove rows
+        for i = 1:AddRowsNum
+            [row,column] = size(ReconstructedImg);
+            ReconstructedImg(row,:) = []; %removing last row
+        end
+    end
 
     out = ReconstructedImg;
 end

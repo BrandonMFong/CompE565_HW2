@@ -9,7 +9,7 @@ function out = GetDCT(Frame,var)
     if (mod(rows, 8) ~= 0)
         AddRowsNum = mod(rows,8);
         AddRowsVal = zeros(AddRowsNum, columns);
-        AddUp(AddRowsVal);
+        AddRowsVal = AddUp(AddRowsVal);
         Frame = [Frame;AddRowsVal];
         [rows, columns] = size(Frame); % Getting new size
         ConcatFlag = true;
@@ -47,7 +47,6 @@ function out = GetDCT(Frame,var)
         waitbar((RowMin)/(rows),StatusRow,sprintf('Calculating DCT [%s]', var))
     end
     close(StatusRow)
-
     if (ConcatFlag) % Remove rows
         for i = 1:AddRowsNum
             [row,column] = size(DCT);
@@ -87,12 +86,13 @@ function out = GetDCTCoefficient(var,pixels)
     out = x;
 end
 
-function Matrix = AddUp(Matrix)
+function out = AddUp(Matrix)
     [rows,columns] = size(Matrix);
     for r = 1:rows
         for c = 1:columns 
             Matrix(r,c) = 128;     
         end
     end
+    out = Matrix;
 end
 

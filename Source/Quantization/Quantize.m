@@ -17,7 +17,6 @@ function out = Quantize(Frame,QuantizationMatrix,var)
         ConcatFlag = true;
     end
     Q = double(Frame); % Convert to 32 bit
-
     % Init interval variables when working with blocksizeXblocksize
     RowMax = const.BlockSize;
     ColumnMax = const.BlockSize;

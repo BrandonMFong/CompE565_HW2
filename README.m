@@ -3,10 +3,10 @@ Setup
 % Joseph Morga & Brandon Fong
 % CompE 565 Homework 2
 % Due Date: Sunday, March 22, 2020 11:00 pm
-% Name & ID : Joseph Morga (817281186), Brandon Fo  ng (819295224)
+% Name & ID : Joseph Morga (817281186), Brandon Fong (819295224)
 % email: jmorga@sdsu.edu, fong.m.brandon97@gmail.com
 % Link to Report: 
-% Link to Git: 
+% Link to Git: https://github.com/BrandonMFong/CompE565_HW2
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Problem 1: Encoder: (Use 4:2:0 YCbCr component image)
