@@ -14,7 +14,7 @@ for i = 1:size(savevar.Save,1)
             fprintf(file,'%g,',val(i,:));
             fprintf(file,'\n');
         end
-        fclose(file)
+        fclose(file);
     elseif savevar.Save(i).Type == "Image"
         eval(['val = ',savevar.Save(i).VariableName,';']);
         imwrite(val,savevar.Save(i).Path);

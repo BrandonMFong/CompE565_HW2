@@ -44,6 +44,16 @@
             "VariableName":"DiffImg",
             "Path":"./Outputs/DiffImg.jpg",
             "Type":"Image"
+        },
+        {
+            "VariableName":"vector1",
+            "Path":"./Outputs/vector1.csv",
+            "Type":"Matrix"
+        },
+        {
+            "VariableName":"vector2",
+            "Path":"./Outputs/vector2.csv",
+            "Type":"Matrix"
         }
     ]
 }
