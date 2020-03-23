@@ -1,5 +1,5 @@
 Setup
-% HW1: Basic Digital Image Processing Operations
+% HW1: JPEG based Image Compression
 % Joseph Morga & Brandon Fong
 % CompE 565 Homework 2
 % Due Date: Sunday, March 22, 2020 11:00 pm
